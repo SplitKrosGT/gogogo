@@ -14,7 +14,7 @@ type Note struct {
 
 func SelectNotes() []Note {
 	var notes []Note
-	db := services.PgDataBase()
+	db := service.PgDataBase()
 
 	err := db.Model(&notes).Select()
 
@@ -29,7 +29,7 @@ func SelectNotes() []Note {
 
 func SelectNote(id int64) Note {
 	var note Note
-	db := services.PgDataBase()
+	db := service.PgDataBase()
 
 	err := db.Model(&note).Where("id = ?", id).Select()
 
@@ -43,7 +43,7 @@ func SelectNote(id int64) Note {
 }
 
 func InsertNote(note Note) Note {
-	db := services.PgDataBase()
+	db := service.PgDataBase()
 
 	_, err := db.Model(&note).Insert()
 	if err != nil {
@@ -56,7 +56,7 @@ func InsertNote(note Note) Note {
 }
 
 func UpdateNote(note Note) Note {
-	db := services.PgDataBase()
+	db := service.PgDataBase()
 
 	_, err := db.Model(&note).Where("id = ?", note.Id).Update()
 	if err != nil {
@@ -69,10 +69,9 @@ func UpdateNote(note Note) Note {
 }
 
 func DeleteNote(id int64) error {
-	var note Note
-	db := services.PgDataBase()
+	db := service.PgDataBase()
 
-	_, err := db.Model(&note).Where("id = ?", id).Delete()
+	_, err := db.Model().Where("id = ?", id).Delete()
 
 	db.Close()
 	return err
