@@ -1,38 +1,67 @@
 .App {
   text-align: center;
+  background: url(./img/background.jpg);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Box {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.Label {
+  font-size: 28px;
+  padding-right: 20px;
+  color: rgb(195, 255, 136);
+}
+
+.Input {
+  font-size: 28px;
+  padding-right: 20px;
+  width: 300;
+  color: rgb(195, 255, 136);
+  background: cornflowerblue;
+}
+
+.Button {
+  font-size: 28px;
+  width: 300;
+  color: rgb(195, 255, 136);
+  background: cornflowerblue;
+  border-radius: 15px;
+  cursor: pointer;
+  
+}
+.Button:hover {
+  color: rgb(150, 236, 63);
+  background: rgb(51, 75, 121);
+  font-size: 32px;
+}
+
+.Title {
+  font-size: 28px;
+  color: rgb(195, 255, 136);
+  background-color: cornflowerblue;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.Flex {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Card {
+  width: 300px;
+  margin: 10px;
+  border-radius: 10px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  color: rgb(195, 255, 136);
+  background: linear-gradient(rgb(142, 0, 155), rgb(3, 0, 151));
 }

@@ -33,18 +33,41 @@ function App() {
     });
   }
 
+  const deleteNote = (id) => {
+    axios.delete(`http://localhost:9090/api/note/${id}`,
+    {
+      withCredentials: false
+    }
+    ).then(() => {
+      setIsUpdate(!isUpdate);
+    });
+  }
+
   return (
     <div className="App">
-
-      <label>Заголовок</label>
-      <input ref={inputTitle} type="text"/>
-      <label>Описание</label>
-      <input ref={inputInfo} type="text"/>
-      <button onClick={() => addNote()}>Добавить</button>
-
+      <div className="Box">
+      <div>
+        <label className="Label">Заголовок</label>
+        <input className="Input" ref={inputTitle} type="text"/>
+      </div>
+      <div>
+        <label className="Label">Описание</label>
+        <input className="Input" ref={inputInfo} type="text"/>
+      </div>
+    </div>
+      <button className="Button" onClick={() => addNote()}>Добавить</button>
+    
+    <div className="Flex">
     {!!notes && notes.map((note, index) => (
-      <div key={'note_' + index}>{note.title}</div>
+      
+        <div className="Card">
+          <div className="Title" key={'note_' + index}>{note.title}</div>
+          <div className="Info" key={'note_' + index}>{note.info}</div>
+          <button className="Button" onClick={() => deleteNote(note.id
+            )}>УДАЛИТЬ</button>
+        </div>
     ))}
+    </div>
 
     </div>
   );
