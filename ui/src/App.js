@@ -10,8 +10,7 @@ function App() {
   const inputInfo = useRef(null);
 
   useEffect(() => {
-    axios.get(
-      'http://localhost:9090/api/notes', {
+    axios.get('http://localhost:9090/api/notes', {
         withCredentials: false
       }).then(r => {
         console.log(r.data);
@@ -24,6 +23,23 @@ function App() {
     {
       title: inputTitle.current.value,
       info: inputInfo.current.value,
+    },
+    {
+      withCredentials: false
+    }
+    ).then(() => {
+      setIsUpdate(!isUpdate);
+    });
+  }
+
+  const editNote = (note) => {
+    axios.put('http://localhost:9090/api/note/edit',
+    {
+      id: note.id,
+      created_at: note.created_at,
+      title: inputTitle.current.value,
+      info: inputInfo.current.value,
+
     },
     {
       withCredentials: false
@@ -65,6 +81,8 @@ function App() {
           <div className="Info" key={'note_' + index}>{note.info}</div>
           <button className="Button" onClick={() => deleteNote(note.id
             )}>УДАЛИТЬ</button>
+          <button className="Button" onClick={() => editNote(note
+            )}>Редактировать</button>
         </div>
     ))}
     </div>
